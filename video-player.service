@@ -1,0 +1,20 @@
+[Unit]
+Description=Video Player with Button Control
+After=multi-user.target network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi
+ExecStart=/usr/bin/python3 /home/pi/video_player.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Environment variables
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/pi/.Xauthority"
+
+[Install]
+WantedBy=multi-user.target
